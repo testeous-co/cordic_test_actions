@@ -16,6 +16,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Build
         run: |
+          ls -la
           echo "heh"
           echo ${{github.event.pull_request.head.email}}
           echo "Bad mgs"
