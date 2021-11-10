@@ -3,9 +3,9 @@ name: action
 
 on:
   push:
-    branches: [ master ]
+    branches: [ testeous ]
   pull_request:
-    branches: [  master ]
+    branches: [  testeous ]
 
 jobs:
   build:
@@ -16,6 +16,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Build
         run: |
+          echo "hah, fuck this"
           mv rtl/ /home/github_actions/cordic_runner/cordic_verif
           cd /home/github_actions/cordic_runner/cordic_verif
           echo ${{github.event.pusher.email}} > email
