@@ -1,6 +1,5 @@
-
-name: action
-
+name: actions
+ 
 on:
 #  push:
 #    branches: [ master ]
@@ -14,8 +13,10 @@ jobs:
     steps:
       - name: Git clone 
         uses: actions/checkout@v2
+        
       - name: log
         run : git log
+        
       - name: Build
         run: |
           ls -la
