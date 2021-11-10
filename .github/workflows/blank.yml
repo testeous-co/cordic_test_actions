@@ -12,10 +12,10 @@ jobs:
 
     steps:
       - name: Git clone 
-        uses: actions/checkout@v1
-        
-      - name: log
-        run : git log
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - run : git log
         
       - name: Build
         run: |
