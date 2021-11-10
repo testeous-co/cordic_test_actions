@@ -2,10 +2,17 @@
 name: action
 
 on:
+<<<<<<< HEAD
   push:
     branches: [ testeous ]
   pull_request:
     branches: [  testeous ]
+=======
+#  push:
+#    branches: [ master ]
+  pull_request:
+    branches: [ '${{github.actor}}' ]
+>>>>>>> 9627a545e5f0e35cf32336c541113ac37b29d6bd
 
 jobs:
   build:
