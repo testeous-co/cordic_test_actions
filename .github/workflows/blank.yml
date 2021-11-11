@@ -13,15 +13,10 @@ jobs:
     steps:
       - name: Git clone 
       - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - run : git log
-        
       - name: Build
         run: |
           ls -la
           echo "heh"
-          echo ${{github.event.pull_request.head.email}}
           echo "Bad mgs"
           echo "I will crush YOU!!"  
           mv rtl/ /home/github_actions/cordic_runner/cordic_verif
