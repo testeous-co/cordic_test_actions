@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Build
         run: |
-          echo "Original test"
+          echo "Heheheh wrong test"
           ls -la 
           mv rtl/ /home/github_actions/cordic_runner/cordic_verif
           cd /home/github_actions/cordic_runner/cordic_verif
