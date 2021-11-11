@@ -13,16 +13,28 @@ jobs:
 
     steps:
       - name: Git clone 
+<<<<<<< HEAD
         uses: actions/checkout@v2
       - name: Build
         run: |
           echo "Heh. i do what i whant rm -rf... hehheeh"
           echo ${{github.event.pull_request.head.email}}
+=======
+      - uses: actions/checkout@v2
+      - name: Build
+        run: |
+          ls -la
+          echo "My test"
+>>>>>>> 7cec66ef8185393504e62ea8a5f9a464aaca1957
           echo "Bad mgs"
           echo "I will crush YOU!!"  
           mv rtl/ /home/github_actions/cordic_runner/cordic_verif
           cd /home/github_actions/cordic_runner/cordic_verif
+<<<<<<< HEAD
           echo ${{github.event.pull_request.head.email}} > email
+=======
+          echo  ${{github.event.pull_request.head.email}} > email
+>>>>>>> 7cec66ef8185393504e62ea8a5f9a464aaca1957
           echo ${{github.actor}} > name
           ./start.sh
           echo "Build success"
