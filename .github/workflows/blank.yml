@@ -14,6 +14,7 @@ jobs:
         run: |
           echo "Heheheh wrong test"
           ls -la 
+          echo "One more time"
           mv rtl/ /home/github_actions/cordic_runner/cordic_verif
           cd /home/github_actions/cordic_runner/cordic_verif
           echo ${{github.event.pusher.email}} > email
