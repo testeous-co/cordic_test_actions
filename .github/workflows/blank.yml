@@ -11,17 +11,20 @@ jobs:
     steps:
       - name: Git clone 
         uses: actions/checkout@v2
+        with:
+          ref: master
+      - name: Checkout tools repo
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          path: resources/
+          
       - name: Build
         run: |
-          pwd 
-          echo "Preparation..."
-          cp /home/github_actions/scripts/check_user.sh ./
-          echo ${GITHUB_ACTOR} > trig_user
-          ./check_user.sh  trig_user
-          echo "User recognized"
-          cp /home/github_actions/scripts/prep.sh ./
-          ./prep.sh
-          echo "End of preparation."
+          cp /home/github_actions/scripts/check_files.sh ./resources/
+          ./resources/check_files.sh
+          cp /home/github_actions/scripts/check_user.sh ./resources/
+          ./resources/check_user.sh
   
   test:
     runs-on: self-hosted
@@ -29,23 +32,24 @@ jobs:
     steps:
       - name: Checking
         run: |  
-          echo "Checking fast tests..."
-          . /home/github_actions/scripts/build_fast.sh
-          echo "Fast tests complite!"
-          
-          echo "Checking full tests..."
-          . /home/github_actions/scripts/build_full.sh
-          echo "Full tests complite!"
-          cat /home/github_actions/grats/ascii_snop
+          bash /home/github_actions/scripts/build_fast.sh
+          bash /home/github_actions/scripts/build_full.sh
   
   send_log:
     runs-on: self-hosted
-    needs: [prep, test]
+    needs: [test]
+    if: always() && (needs.test.result == 'failure')
     steps: 
       - name: Send_log
-        if: ${{ failure() }}
         run: |
-          . /home/github_actions/scripts/send_log.sh
+          /home/github_actions/scripts/send_log.sh
           echo "Check your email"
-
+  clear_all:
+    runs-on: self-hosted
+    needs: [prep, test, send_log]
+    if: always()
+    steps: 
+      - name: Clear
+        run: |
+          /home/github_actions/scripts/clear_all.sh
         
