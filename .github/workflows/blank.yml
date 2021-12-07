@@ -1,6 +1,4 @@
-
 name: action
-
 on:
   [ pull_request_target ]
 
